@@ -32,19 +32,27 @@ function imagePlacement(){
   var rightImage = imageArray[Math.floor(Math.random() * 20)].path;
   var centerImage = imageArray[Math.floor(Math.random() * 20)].path;
 
-  if(totalTimesClicked < 25){
-    while (leftImage === rightImage || leftImage === centerImage || rightImage === centerImage){
-    leftImage = imageArray[Math.floor(Math.random() * 20)].path;
-    rightImage = imageArray[Math.floor(Math.random() * 20)].path;
-    centerImage = imageArray[Math.floor(Math.random() * 20)].path;
+    if(totalTimesClicked < 25){
+      while (leftImage === rightImage || leftImage === centerImage || rightImage === centerImage){
+      leftImage = imageArray[Math.ceil(Math.random() * 20)].path;
+      rightImage = imageArray[Math.ceil(Math.random() * 20)].path;
+      centerImage = imageArray[Math.ceil(Math.random() * 20)].path;
+    }
   }
-  }
+
 
   left.src = leftImage;
   center.src = rightImage;
   right.src = centerImage;
+
+//   leftImage.Images.timesShown += 1;
+//   rightImage.Images.timesShown += 1;
+//   centerImage.Images.timesShown += 1;
 }
 
+// function clickingThaPic(event){
+//
+// }
 console.log(imageArray);
 
 
