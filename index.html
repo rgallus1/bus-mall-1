@@ -5,10 +5,9 @@
     <title></title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-    <script src="Chart.js"></script>
-<script>
-    var myChart = new Chart({...})
-</script>
+    <!-- <script src="Chart.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js" integrity="sha256-RASNMNlmRtIreeznffYMDUxBXcMRjijEaaGF/gxT6vw=" crossorigin="anonymous"></script>
 
 
   </head>
@@ -21,8 +20,12 @@
   <img id="center" src="http://placehold.it/300x300/">
   <img id="right" src="http://placehold.it/300x300/">
 </section>
+<button type="button" id="display-button">Show Results</button>
     <ul id="picList"></ul>
+
     <footer></footer>
-<script src="app1.js"></script>
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <script src="playground.js"></script>
+<!-- <script src="app1.js"></script> -->
   </body>
 </html>

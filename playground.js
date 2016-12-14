@@ -169,30 +169,25 @@ displayButton.addEventListener('click', makeChart);
 function makeChart () {
   function myImageNames () {
     var names = [];
-    for(var i = 0; i < 20; i++) {
+    for(var i = 0; i < allProducts.length; i++) {
       names.push(allProducts[i].name);
     }
     return names;
   };
-//   function renderList() {
-//  for (var i=0; i < allProducts.length; i++){
-//    viewed[i] = allProducts[i].views;
-//    clicked[i] = allProducts[i].clicks;
-//  }
-// }
-  // function numberOfClicks(){
-  //   var clicks = []
-  //   for(var i = 0; i < allProducts.length; i++) {
-  //     clicks.push(allProducts[i].clicks);
-  // }
+  function renderList() {
+ for (var i=0; i < allProducts.length; i++){
+   viewed[i] = allProducts[i].views;
+   clicked[i] = allProducts[i].clicks;
+ }
+ }
   var ctx = document.getElementById("myChart");
   var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
           labels: myImageNames(),
           datasets: [{
-              label: '# of clicks',
-              data: clicked,
+              label: ('# of clicks'),
+              data: renderList(),
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
