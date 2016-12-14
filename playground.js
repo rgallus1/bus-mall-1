@@ -21,6 +21,8 @@ var allProducts = [];
 var newArray = [];
 var oldArray = [];
 var clickCounter = 0;
+var clicked = [];
+var viewed = [];
 
 // Constructor
 // -----------------
@@ -55,6 +57,7 @@ function rand() {
   return Math.floor(Math.random() * allProducts.length);
   // generate a random number between 0 and allProducts.length
 }
+
 //---------------
 // function preventDupes() {
 //   // logic to prevent duplicates
@@ -101,10 +104,7 @@ function showThreePics() {
 
   // this will place three new images on the page
 }
-
-function renderList() {
-  // display a list of items and total clicks/views
-}
+document.getElementById('display-button').style.visibility = 'hidden';
 
 function handleClick(event) {
   event.preventDefault();
@@ -130,16 +130,27 @@ function handleClick(event) {
     allProducts[newArray[2]].clicks += 1;
     console.log(allProducts[newArray[2]]);
     }
-// clear old images
-clickCounter += 1;
-console.log(clickCounter, 'total clicks so far');
+    // clear old images
+    clickCounter += 1;
+    console.log(clickCounter, 'total clicks so far');
   // check whether total clicks <25
-  if (clickCounter > 5) {
-    return alert('You outta clicks dude!');
-  }
+  if (clickCounter < 5) {
+    showThreePics();
+
+    } else {
+      var imgs =
+      document.removeEventListener('click', imgs);
+      document.getElementById('display-button').style.visibility = 'visible';
+      return alert('You outta clicks dude!');
+    }
+
+
+
+
+
   // after 25, remove event listeners on picNames
   // after 25, show "Results" button
-  showThreePics();
+
 }
 // ++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++
@@ -147,6 +158,68 @@ console.log(clickCounter, 'total clicks so far');
 // (EXECUTE ACTIONS)
 // ++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++
-
 showThreePics();
+
 picContainer.addEventListener('click', handleClick);
+
+var displayButton = document.getElementById('display-button');
+displayButton.addEventListener('click', makeChart);
+
+// var myChart = new Chart({})
+function makeChart () {
+  function myImageNames () {
+    var names = [];
+    for(var i = 0; i < 20; i++) {
+      names.push(allProducts[i].names);
+    }
+    return names;
+  };
+//   function renderList() {
+//  for (var i=0; i < allProducts.length; i++){
+//    viewed[i] = allProducts[i].views;
+//    clicked[i] = allProducts[i].clicks;
+//  }
+// }
+  // function numberOfClicks(){
+  //   var clicks = []
+  //   for(var i = 0; i < allProducts.length; i++) {
+  //     clicks.push(allProducts[i].clicks);
+  // }
+  var ctx = document.getElementById("myChart");
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: myImageNames(),
+          datasets: [{
+              label: '# of clicks',
+              data: clicked,
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  });
+}
