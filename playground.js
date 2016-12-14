@@ -170,7 +170,7 @@ function makeChart () {
   function myImageNames () {
     var names = [];
     for(var i = 0; i < 20; i++) {
-      names.push(allProducts[i].names);
+      names.push(allProducts[i].name);
     }
     return names;
   };
