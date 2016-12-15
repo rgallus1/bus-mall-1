@@ -144,6 +144,10 @@ function handleClick(event) {
       return alert('You outta clicks dude!');
     }
 
+    //Event Listener is always listening
+
+      var stuff = JSON.stringify(allProducts);
+      localStorage.setItem('productData', stuff);
 
 
 
@@ -159,6 +163,26 @@ function handleClick(event) {
 // ++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++
 showThreePics();
+
+//checks to see if there is local storage present
+
+function storeDataRetrieve(){
+if(localStorage.productData){
+  console.log('local Storage exists!')
+
+
+  var retrievedStuff = localStorage.getItem('productData');
+  var parsedStuff = JSON.parse(retrievedStuff);
+
+  allProducts = parsedStuff
+  console.log(allProducts);
+  console.log(parsedStuff);
+}
+
+}
+//calls check to see if local storage is present
+storeDataRetrieve();
+
 
 picContainer.addEventListener('click', handleClick);
 
